@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadEvents } from "../../store/event/actions";
 import EventCard from "./EventCard";
+import { displayItems } from "../../App";
 import "./style.css";
 
 export class EventList extends Component {
@@ -14,6 +15,7 @@ export class EventList extends Component {
       ? "Loading..."
       : items.map((item, i) => <Component data={item} key={i} />);
   };
+
   render = () => {
     return (
       <div>

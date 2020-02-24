@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actions";
+import { LOGIN_SUCCESS } from "./actions";
 
 const initialState = {
   token: null

@@ -2,7 +2,7 @@ import axios from "axios";
 import { baseUrl } from "../../App";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+// export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 
 const loginSuccess = token => ({
   type: LOGIN_SUCCESS,

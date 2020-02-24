@@ -14,12 +14,16 @@ export class TicketList extends Component {
   };
 
   render = () => {
+    if (!this.props.event) {
+      return "Loading...";
+    }
     const { name, description, startDate, endDate, tickets } = this.props.event;
+
     return (
       <div>
         <h1>{name}</h1>
         <p>
-          {startDate} - {endDate}
+          {startDate.slice(0, 10)} - {endDate.slice(0, 10)}
         </p>
         <p>{description}</p>
         <div className="ticketList">{displayItems(tickets, TicketItem)}</div>

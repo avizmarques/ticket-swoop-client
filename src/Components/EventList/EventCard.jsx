@@ -4,12 +4,12 @@ export default function EventCard(props) {
   const { imageUrl, name, startDate, endDate } = props.data;
 
   return (
-    <div className="eventCard" key={props.key}>
+    <div className="eventCard">
       <img src={imageUrl} alt={name} />
       <div>
         <div>{name}</div>
         <div>
-          {startDate} - {endDate}
+          {startDate.slice(0, 10)} - {endDate.slice(0, 10)}
         </div>
       </div>
     </div>

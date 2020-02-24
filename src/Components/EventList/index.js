@@ -10,12 +10,6 @@ export class EventList extends Component {
     this.props.loadEvents();
   };
 
-  displayCards = (items, Component) => {
-    return !items
-      ? "Loading..."
-      : items.map((item, i) => <Component data={item} key={i} />);
-  };
-
   render = () => {
     return (
       <div>
@@ -23,7 +17,7 @@ export class EventList extends Component {
           <div>Next page</div>
         </div>
         <div className="eventList">
-          {this.displayCards(this.props.events, EventCard)}
+          {displayItems(this.props.events, EventCard)}
         </div>
       </div>
     );

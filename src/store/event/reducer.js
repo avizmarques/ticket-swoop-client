@@ -2,7 +2,7 @@ import { EVENTS_FETCHED, EVENT_DETAIL_FETCHED } from "./actions";
 
 const initialState = {
   allEvents: [],
-  event: []
+  event: null
 };
 
 export default function(state = initialState, action) {

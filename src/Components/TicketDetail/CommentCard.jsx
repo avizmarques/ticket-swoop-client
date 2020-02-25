@@ -1,12 +1,12 @@
 import React from "react";
 
 export default function CommentCard(props) {
-  const { text, createdAt } = props.data;
+  const { text, createdAt, user } = props.data;
   return (
     <div className="commentCard">
-      <div>Username</div>
-      <div>on {createdAt.slice(0, 10)}</div>
       <div>{text}</div>
+      <div>by {user.userName}</div>
+      <div>on {createdAt.slice(0, 10)}</div>
     </div>
   );
 }

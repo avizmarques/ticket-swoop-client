@@ -11,7 +11,7 @@ export default function(state = initialState, action) {
         userName: action.payload.userName
       };
     case SIGNUP_SUCCESS:
-      return state;
+      return { ...state, userCreated: true };
     default:
       return state;
   }

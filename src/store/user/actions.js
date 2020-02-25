@@ -26,13 +26,9 @@ const signupSuccess = () => ({
   type: SIGNUP_SUCCESS
 });
 
-export const signup = (userName, email, password) => async dispatch => {
+export const signup = data => async dispatch => {
   try {
-    const res = await axios.post(`${baseUrl}/signup`, {
-      userName,
-      email,
-      password
-    });
+    const res = await axios.post(`${baseUrl}/signup`, data);
     dispatch(signupSuccess(res.data));
   } catch (err) {
     console.error(err);

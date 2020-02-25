@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS } from "./actions";
+import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actions";
 
 const initialState = {};
 
@@ -10,6 +10,8 @@ export default function(state = initialState, action) {
         token: action.payload.token,
         userName: action.payload.userName
       };
+    case SIGNUP_SUCCESS:
+      return state;
     default:
       return state;
   }

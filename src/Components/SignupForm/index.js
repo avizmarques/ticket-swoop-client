@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../store/user/actions";
+import { signup } from "../../store/user/actions";
 
 class LoginForm extends Component {
   state = {
@@ -12,7 +12,7 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.signup(this.state);
     this.setState({ userName: "", email: "", password: "" });
   };
 
@@ -58,6 +58,6 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => ({ token: state.token });
 
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { signup };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

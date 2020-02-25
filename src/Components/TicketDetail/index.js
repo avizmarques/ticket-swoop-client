@@ -2,11 +2,28 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadTicket } from "../../store/ticket/actions";
 import CommentContainer from "./CommentContainer";
+import CommentForm from "./CommentForm";
+import { postComment } from "../../store/ticket/actions";
 import "./style.css";
 
 class TicketDetail extends Component {
   state = {
-    ticketId: parseInt(this.props.match.params.id)
+    ticketId: parseInt(this.props.match.params.id),
+    text: ""
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.postComment(this.state.ticketId, this.state.text);
+    this.setState({
+      text: ""
+    });
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   componentDidMount = () => {
@@ -27,17 +44,27 @@ class TicketDetail extends Component {
           <img src={imageUrl} />
           <p>{description}</p>
         </div>
-        <CommentContainer
-          ticketId={this.state.ticketId}
-          comments={this.props.ticket.comments}
-        />
+        <div>
+          <h2>Comments</h2>
+          {this.props.user.token && (
+            <CommentForm
+              onSubmit={this.onSubmit}
+              onChange={this.onChange}
+              text={this.state.text}
+            />
+          )}
+          <CommentContainer
+            ticketId={this.state.ticketId}
+            comments={this.props.ticket.comments}
+          />
+        </div>
       </div>
     );
   };
 }
 
-const mapStateToProps = state => ({ ticket: state.ticket });
+const mapStateToProps = state => ({ ticket: state.ticket, user: state.user });
 
-const mapDispatchToProps = { loadTicket };
+const mapDispatchToProps = { loadTicket, postComment };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketDetail);

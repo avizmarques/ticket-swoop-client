@@ -9,9 +9,14 @@
   color: white;
 }
 
-button {
+.whiteButton {
   background-color: white;
   color: blue;
+}
+
+button {
+  background-color: blue;
+  color: white;
   font-family: "Montserrat", sans-serif;
   border-radius: 28px;
   border: none;

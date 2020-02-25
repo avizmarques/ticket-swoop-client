@@ -7,7 +7,7 @@ export default function Navbar(props) {
     <div className="navbar">
       <div>ticketswoop</div>
       <Link to="/login">
-        <button className="login">Login</button>
+        <button className="whiteButton">Login</button>
       </Link>
     </div>
   );

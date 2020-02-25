@@ -3,6 +3,7 @@ import { baseUrl } from "../../App";
 
 export const EVENTS_FETCHED = "EVENTS_FETCHED";
 export const EVENT_DETAIL_FETCHED = "EVENT_DETAIL_FETCHED";
+export const CREATE_EVENT_SUCCESS = "CREATE_EVENT_SUCCESS";
 
 const eventsFetched = data => ({
   type: EVENTS_FETCHED,
@@ -27,6 +28,21 @@ export const loadEventDetail = eventId => async dispatch => {
   try {
     const res = await axios.get(`${baseUrl}/event/${eventId}`);
     dispatch(eventDetailFetched(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const eventCreated = data => ({
+  type: CREATE_EVENT_SUCCESS,
+  payload: data
+});
+
+export const createEvent = data => async (dispatch, getState) => {
+  try {
+    const res = await axios.post(`${baseUrl}/event`, data, {
+      headers: { Authorization: `Bearer ${getState().user.token}` }
+    });
   } catch (err) {
     console.error(err);
   }

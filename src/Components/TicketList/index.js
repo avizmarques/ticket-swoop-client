@@ -17,6 +17,7 @@ export class TicketList extends Component {
     if (!this.props.event) {
       return "Loading...";
     }
+
     const { name, description, startDate, endDate, tickets } = this.props.event;
 
     return (
@@ -26,7 +27,11 @@ export class TicketList extends Component {
           {startDate.slice(0, 10)} - {endDate.slice(0, 10)}
         </p>
         <p>{description}</p>
-        <div className="ticketList">{displayItems(tickets, TicketItem)}</div>
+        <div className="ticketList">
+          {tickets
+            ? displayItems(tickets, TicketItem)
+            : "No tickets for this event"}
+        </div>
       </div>
     );
   };

@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import EventList from "./Components/EventList";
 import TicketList from "./Components/TicketList";
+import TicketDetail from "./Components/TicketDetail";
 import "./style.css";
 
 export const baseUrl = "http://localhost:4000";
@@ -20,6 +21,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={EventList} />
       <Route path="/events/:id" component={TicketList} />
+      <Route path="/tickets/:id" component={TicketDetail} />
       {/* <Route exact path="/login" component={LoginForm} /> */}
     </div>
   );

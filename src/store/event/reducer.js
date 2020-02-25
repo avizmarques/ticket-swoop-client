@@ -10,7 +10,10 @@ export default function(state = initialState, action) {
     case EVENTS_FETCHED:
       return { ...state, allEvents: action.payload };
     case EVENT_DETAIL_FETCHED:
-      return { ...state, event: action.payload };
+      return {
+        ...state,
+        event: { ...action.payload.event, tickets: action.payload.tickets }
+      };
     default:
       return state;
   }

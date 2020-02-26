@@ -7,13 +7,18 @@ import {
 
 const initialState = {
   allEvents: [],
+  countEvents: null,
   event: null
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case EVENTS_FETCHED:
-      return { ...state, allEvents: action.payload };
+      return {
+        ...state,
+        allEvents: action.payload.rows,
+        countEvents: action.payload.count
+      };
     case EVENT_DETAIL_FETCHED:
       return {
         ...state,

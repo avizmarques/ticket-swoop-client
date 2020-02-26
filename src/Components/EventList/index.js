@@ -37,7 +37,6 @@ export class EventList extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    const numEvents = this.props.events.length;
 
     try {
       await this.props.createEvent(this.state);
@@ -45,18 +44,14 @@ export class EventList extends Component {
       console.error(err);
     }
 
-    if (this.props.events.length === numEvents) {
-      this.setState({ eventCreationFailed: true });
-    } else {
-      this.setState({
-        showForm: false,
-        name: "",
-        description: "",
-        imageUrl: "",
-        startDate: "",
-        endDate: ""
-      });
-    }
+    this.setState({
+      showForm: false,
+      name: "",
+      description: "",
+      imageUrl: "",
+      startDate: "",
+      endDate: ""
+    });
   };
 
   displayForm = Form => {
@@ -98,17 +93,18 @@ export class EventList extends Component {
         : currentPage - 1
       : null;
 
+    const lastPage = currentPage === Math.ceil(this.props.countEvents / 9);
+
     return (
       <div>
         <div>
-          <div>
-            {this.props.events.length === 9 && (
-              <Link to={`/eventlist/${nextPage}`}>Next page</Link>
-            )}
+          <div className="pageNav">
             {previousPage && (
               <Link to={`/eventlist/${previousPage}`}>Previous page</Link>
             )}
             {currentPage === 2 && <Link to={`/`}>Previous page</Link>}
+
+            {!lastPage && <Link to={`/eventlist/${nextPage}`}>Next page</Link>}
           </div>
           {this.displayForm(AddEventForm)}
         </div>
@@ -122,6 +118,7 @@ export class EventList extends Component {
 
 const mapStateToProps = state => ({
   events: state.events.allEvents,
+  countEvents: state.events.countEvents,
   user: state.user
 });
 

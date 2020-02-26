@@ -28,13 +28,32 @@ export default function(state = initialState, action) {
         : { ...state, allEvents: [...state.allEvents, action.payload] };
     }
     case CREATE_TICKET_SUCCESS:
-      return {
-        ...state,
-        event: {
-          ...state.event,
-          tickets: [...state.event.tickets, action.payload]
-        }
-      };
+      return state.event.tickets
+        ? {
+            ...state,
+            event: {
+              ...state.event,
+              tickets: [
+                ...state.event.tickets,
+                {
+                  ...action.payload.ticket,
+                  user: { userName: action.payload.userName }
+                }
+              ]
+            }
+          }
+        : {
+            ...state,
+            event: {
+              ...state.event,
+              tickets: [
+                {
+                  ...action.payload.ticket,
+                  user: { userName: action.payload.userName }
+                }
+              ]
+            }
+          };
     default:
       return state;
   }

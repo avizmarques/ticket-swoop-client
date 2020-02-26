@@ -1,7 +1,8 @@
 import {
   EVENTS_FETCHED,
   EVENT_DETAIL_FETCHED,
-  CREATE_EVENT_SUCCESS
+  CREATE_EVENT_SUCCESS,
+  CREATE_TICKET_SUCCESS
 } from "./actions";
 
 const initialState = {
@@ -26,7 +27,14 @@ export default function(state = initialState, action) {
         ? state
         : { ...state, allEvents: [...state.allEvents, action.payload] };
     }
-
+    case CREATE_TICKET_SUCCESS:
+      return {
+        ...state,
+        event: {
+          ...state.event,
+          tickets: [...state.event.tickets, action.payload]
+        }
+      };
     default:
       return state;
   }

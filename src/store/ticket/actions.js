@@ -3,6 +3,7 @@ import { baseUrl } from "../../App";
 
 export const TICKET_FETCHED = "TICKET_FETCHED";
 export const COMMENT_POST_SUCCESS = "COMMENT_POST_SUCCESS";
+export const CREATE_TICKET_SUCCESS = "CREATE_TICKET_SUCCESS";
 
 const ticketFetched = data => ({
   type: TICKET_FETCHED,

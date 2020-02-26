@@ -4,6 +4,7 @@ import { baseUrl } from "../../App";
 export const EVENTS_FETCHED = "EVENTS_FETCHED";
 export const EVENT_DETAIL_FETCHED = "EVENT_DETAIL_FETCHED";
 export const CREATE_EVENT_SUCCESS = "CREATE_EVENT_SUCCESS";
+export const CREATE_TICKET_SUCCESS = "CREATE_TICKET_SUCCESS";
 
 const eventsFetched = data => ({
   type: EVENTS_FETCHED,
@@ -45,6 +46,29 @@ export const createEvent = data => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${token}` }
     });
     dispatch(eventCreated(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const ticketCreated = data => ({
+  type: CREATE_TICKET_SUCCESS,
+  payload: data
+});
+
+export const createTicket = data => async (dispatch, getState) => {
+  const { eventId, price, imageUrl, description } = data;
+
+  try {
+    const token = getState().user.token;
+    const res = await axios.post(
+      `${baseUrl}/event/${eventId}/ticket`,
+      { price, imageUrl, description },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+    dispatch(ticketCreated(res.data));
   } catch (err) {
     console.error(err);
   }

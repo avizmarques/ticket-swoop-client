@@ -17,6 +17,10 @@ export class EventList extends Component {
     endDate: ""
   };
 
+  componentDidMount = () => {
+    this.props.loadEvents();
+  };
+
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm });
   };
@@ -49,10 +53,6 @@ export class EventList extends Component {
         endDate: ""
       });
     }
-  };
-
-  componentDidMount = () => {
-    this.props.loadEvents();
   };
 
   displayForm = Form => {

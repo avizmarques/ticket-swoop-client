@@ -8,7 +8,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         token: action.payload.token,
-        userName: action.payload.userName
+        userName: action.payload.userName,
+        id: action.payload.id
       };
     case SIGNUP_SUCCESS:
       return { ...state, userCreated: true };

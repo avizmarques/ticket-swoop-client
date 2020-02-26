@@ -1,4 +1,8 @@
-import { TICKET_FETCHED, COMMENT_POST_SUCCESS } from "./actions";
+import {
+  TICKET_FETCHED,
+  COMMENT_POST_SUCCESS,
+  EDIT_TICKET_SUCCESS
+} from "./actions";
 
 const initialState = null;
 
@@ -17,6 +21,10 @@ export default function(state = initialState, action) {
           }
         ]
       };
+    case EDIT_TICKET_SUCCESS: {
+      const { price, description, imageUrl, updatedAt } = action.payload;
+      return { ...state, price, description, imageUrl, updatedAt };
+    }
     default:
       return state;
   }

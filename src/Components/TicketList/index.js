@@ -31,10 +31,28 @@ export class TicketList extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
+
+    const initialNumTickets =
+      this.props.event.tickets === 0 ? 0 : this.props.event.tickets.length;
+
     try {
       this.props.createTicket(this.state);
     } catch (err) {
       console.error(err);
+    }
+
+    const numTicketsAfter =
+      this.props.event.tickets === 0 ? 0 : this.props.event.tickets.length;
+
+    if (initialNumTickets === numTicketsAfter) {
+      this.setState({ ticketCreationFailed: true });
+    } else {
+      this.setState({
+        showForm: false,
+        price: "",
+        description: "",
+        imageUrl: ""
+      });
     }
   };
 
@@ -43,7 +61,7 @@ export class TicketList extends Component {
       return (
         <div>
           <button onClick={this.toggleForm}>Add ticket</button>
-          {this.state.showForm && this.state.eventCreationFailed && (
+          {this.state.showForm && this.state.ticketCreationFailed && (
             <p>
               Something went wrong. Make sure you're logged in and that you're
               providing all necessary information.

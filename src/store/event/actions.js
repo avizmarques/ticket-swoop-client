@@ -40,9 +40,11 @@ const eventCreated = data => ({
 
 export const createEvent = data => async (dispatch, getState) => {
   try {
+    const token = getState().user.token;
     const res = await axios.post(`${baseUrl}/event`, data, {
-      headers: { Authorization: `Bearer ${getState().user.token}` }
+      headers: { Authorization: `Bearer ${token}` }
     });
+    dispatch(eventCreated(res.data));
   } catch (err) {
     console.error(err);
   }

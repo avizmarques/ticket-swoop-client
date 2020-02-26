@@ -4,6 +4,8 @@ import { loadEventDetail, createTicket } from "../../store/event/actions";
 import TicketItem from "./TicketItem";
 import AddTicketForm from "./AddTicketForm";
 import { displayItems } from "../../App";
+import { Link } from "react-router-dom";
+import "./style.css";
 
 export class TicketList extends Component {
   state = {
@@ -60,6 +62,12 @@ export class TicketList extends Component {
           )}
         </div>
       );
+    } else {
+      return (
+        <div>
+          <Link to="/login">Login</Link> to post a new ticket
+        </div>
+      );
     }
   };
 
@@ -68,14 +76,22 @@ export class TicketList extends Component {
       return "Loading...";
     }
 
-    const { name, description, startDate, endDate, tickets } = this.props.event;
+    const {
+      name,
+      imageUrl,
+      description,
+      startDate,
+      endDate,
+      tickets
+    } = this.props.event;
 
     return (
-      <div>
+      <div className="eventDetail">
         <h1>{name}</h1>
         <p>
-          {startDate.slice(0, 10)} - {endDate.slice(0, 10)}
+          {startDate.slice(0, 10)} to {endDate.slice(0, 10)}
         </p>
+        <img className="imageDetail" src={imageUrl} />
         <p>{description}</p>
         {this.displayForm(AddTicketForm)}
         <div className="ticketList">

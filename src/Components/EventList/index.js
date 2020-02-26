@@ -57,7 +57,7 @@ export class EventList extends Component {
   displayForm = Form => {
     if (this.props.user.token) {
       return (
-        <div>
+        <div className="hiddenForm">
           <button onClick={this.toggleForm}>Add event</button>
           {this.state.showForm && this.state.eventCreationFailed && (
             <p>
@@ -73,6 +73,12 @@ export class EventList extends Component {
               values={this.state}
             />
           )}
+        </div>
+      );
+    } else {
+      return (
+        <div className="hiddenForm">
+          <Link to="/login">Login</Link> to post a new event
         </div>
       );
     }
@@ -99,12 +105,11 @@ export class EventList extends Component {
       <div>
         <div>
           <div className="pageNav">
+            {!lastPage && <Link to={`/eventlist/${nextPage}`}>Next page</Link>}
             {previousPage && (
               <Link to={`/eventlist/${previousPage}`}>Previous page</Link>
             )}
             {currentPage === 2 && <Link to={`/`}>Previous page</Link>}
-
-            {!lastPage && <Link to={`/eventlist/${nextPage}`}>Next page</Link>}
           </div>
           {this.displayForm(AddEventForm)}
         </div>

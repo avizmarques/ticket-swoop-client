@@ -7,16 +7,17 @@ export default function TicketItem(props) {
     risk <= 10 ? "#22ff00" : risk > 10 && risk <= 50 ? "#ffbb00" : "#ff0000";
   return (
     <div className="ticketItem">
-      <div>{user.userName}</div>
-      <div>€ {price}</div>
-      <div>{description}</div>
-      <div>
-        Risk: {risk} %{" "}
-        <div className="dot" style={{ backgroundColor: color }} />
+      <div className="cell">{user.userName}</div>
+      <div className="cell">€ {price}</div>
+      <div className="cell">{description}</div>
+      <div className="cell">
+        <div className="dot" style={{ backgroundColor: color }}>
+          {risk} %
+        </div>
       </div>
-      <Link to={`/tickets/${id}`}>
-        <button>More information</button>
-      </Link>
+      <div className="cell">
+        <Link to={`/tickets/${id}`}>+ Info</Link>
+      </div>
     </div>
   );
 }

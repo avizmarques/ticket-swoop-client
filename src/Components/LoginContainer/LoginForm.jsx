@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function LoginForm(props) {
   return (
-    <div>
+    <div className="loginForm">
       <h1>Login</h1>
       <form onSubmit={props.onSubmit}>
         <input

@@ -84,14 +84,31 @@ export class EventList extends Component {
   };
 
   render = () => {
-    const nextPage = this.props.match.params.page
-      ? parseInt(this.props.match.params.page) + 1
-      : 2;
+    if (!this.props.events.length) {
+      return "Loading...";
+    }
+
+    const currentPage = parseInt(this.props.match.params.page);
+
+    const nextPage = currentPage ? currentPage + 1 : 2;
+
+    const previousPage = currentPage
+      ? currentPage === 2
+        ? null
+        : currentPage - 1
+      : null;
+
     return (
       <div>
         <div>
           <div>
-            <Link to={`/eventlist/${nextPage}`}>Next page</Link>
+            {this.props.events.length === 9 && (
+              <Link to={`/eventlist/${nextPage}`}>Next page</Link>
+            )}
+            {previousPage && (
+              <Link to={`/eventlist/${previousPage}`}>Previous page</Link>
+            )}
+            {currentPage === 2 && <Link to={`/`}>Previous page</Link>}
           </div>
           {this.displayForm(AddEventForm)}
         </div>

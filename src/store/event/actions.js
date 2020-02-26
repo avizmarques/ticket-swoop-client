@@ -47,7 +47,14 @@ export const createEvent = data => async (dispatch, getState) => {
     const res = await axios.post(`${baseUrl}/event`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    dispatch(eventCreated(res.data));
+
+    const numOfEventsInPage = getState().events.allEvents.length;
+
+    if (numOfEventsInPage < 9) {
+      return dispatch(eventCreated(res.data));
+    }
+
+    return;
   } catch (err) {
     console.error(err);
   }

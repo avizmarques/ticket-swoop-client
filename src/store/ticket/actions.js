@@ -53,7 +53,6 @@ export const editTicket = data => async (dispatch, getState) => {
         headers: { Authorization: `Bearer ${getState().user.token}` }
       }
     );
-    console.log(res.data[1][0]);
     dispatch(ticketEdited(res.data[1][0]));
   } catch (err) {
     console.error(err);

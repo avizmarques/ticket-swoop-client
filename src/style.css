@@ -9,10 +9,27 @@ h3 {
   font-family: "Montserrat", sans-serif;
 }
 
-.dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
+a {
+  color: blue;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  margin: 0 auto;
+}
+
+form > button {
+  width: 100px;
+  margin: 10px 0px;
+}
+
+input {
+  margin: 5px 0px;
 }

@@ -1,3 +1,9 @@
+.ticketDetail {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .commentCard {
   margin-top: 20px;
 }

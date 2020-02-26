@@ -6,7 +6,7 @@ export default function Navbar(props) {
   return (
     <div className="navbar">
       <Link to="/">
-        <div>ticketswoop</div>
+        <div className="logo">ticketswoop</div>
       </Link>
       <Link to="/login">
         <button className="whiteButton">Login</button>

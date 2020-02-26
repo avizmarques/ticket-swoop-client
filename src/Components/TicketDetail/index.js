@@ -6,6 +6,7 @@ import CommentForm from "./CommentForm";
 import EditTicketForm from "./EditTicketForm";
 import { postComment } from "../../store/ticket/actions";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 class TicketDetail extends Component {
   state = {
@@ -99,21 +100,24 @@ class TicketDetail extends Component {
     const color =
       risk <= 10 ? "#22ff00" : risk > 10 && risk <= 50 ? "#ffbb00" : "#ff0000";
     return (
-      <div>
+      <div className="ticketDetail">
         <div>
           <h1>Ticket from {user.userName}</h1>
           <h2>Risk : {risk} %</h2>
-          <div className="dot" style={{ backgroundColor: color }} />
           {this.displayEditForm(EditTicketForm)}
         </div>
         <div>
           <h2>Comments</h2>
-          {this.props.user.token && (
+          {this.props.user.token ? (
             <CommentForm
               onSubmit={this.onSubmit}
               onChange={this.onChange}
               text={this.state.text}
             />
+          ) : (
+            <div>
+              <Link to="/login">Login</Link> to post a new comment
+            </div>
           )}
           <CommentContainer
             ticketId={this.state.ticketId}

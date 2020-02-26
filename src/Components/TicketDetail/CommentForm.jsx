@@ -9,7 +9,7 @@ export default function CommentForm(props) {
         value={props.text}
         onChange={e => props.onChange(e)}
       />
-      <button type="submit">Add comment</button>
+      <button type="submit">Add</button>
     </form>
   );
 }

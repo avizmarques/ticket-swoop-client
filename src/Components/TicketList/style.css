@@ -1,0 +1,39 @@
+.eventDetail {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.imageDetail {
+  width: 600px;
+}
+
+.ticketItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  background-color: lightgray;
+  width: 100px;
+  height: 40px;
+  margin: 10px 0px;
+}
+
+.tickets {
+  color: black;
+}
+
+.dot {
+  width: 35px;
+  background-color: #bbb;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.8em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -7,12 +7,12 @@ export default function EventCard(props) {
   return (
     <div className="eventCard">
       <Link to={`/events/${id}`}>
-        <img src={imageUrl} alt={name} />
+        <img className="eventImg" src={imageUrl} alt={name} />
       </Link>
-      <div>
-        <div>{name}</div>
+      <div className="eventDescription">
+        <h3>{name}</h3>
         <div>
-          {startDate.slice(0, 10)} - {endDate.slice(0, 10)}
+          {startDate.slice(0, 10)} to {endDate.slice(0, 10)}
         </div>
       </div>
     </div>

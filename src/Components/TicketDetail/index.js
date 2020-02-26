@@ -96,11 +96,14 @@ class TicketDetail extends Component {
       return "Loading...";
     }
     const { user, risk } = this.props.ticket;
+    const color =
+      risk <= 10 ? "#22ff00" : risk > 10 && risk <= 50 ? "#ffbb00" : "#ff0000";
     return (
       <div>
         <div>
           <h1>Ticket from {user.userName}</h1>
           <h2>Risk : {risk} %</h2>
+          <div className="dot" style={{ backgroundColor: color }} />
           {this.displayEditForm(EditTicketForm)}
         </div>
         <div>

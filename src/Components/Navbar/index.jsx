@@ -5,7 +5,9 @@ import "./style.css";
 export default function Navbar(props) {
   return (
     <div className="navbar">
-      <div>ticketswoop</div>
+      <Link to="/">
+        <div>ticketswoop</div>
+      </Link>
       <Link to="/login">
         <button className="whiteButton">Login</button>
       </Link>

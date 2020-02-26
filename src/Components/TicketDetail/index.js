@@ -75,7 +75,7 @@ class TicketDetail extends Component {
       return (
         <div>
           <h2>€ {price}</h2>
-          <img src={imageUrl} />
+          <img src={imageUrl} alt={description} />
           <p>{description}</p>
           <button onClick={this.toggleForm}>Edit</button>
         </div>
@@ -84,7 +84,7 @@ class TicketDetail extends Component {
       return (
         <div>
           <h2>€ {price}</h2>
-          <img src={imageUrl} />
+          <img src={imageUrl} alt={description} />
           <p>{description}</p>
         </div>
       );

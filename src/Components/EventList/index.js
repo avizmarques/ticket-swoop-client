@@ -5,6 +5,7 @@ import EventCard from "./EventCard";
 import { displayItems } from "../../App";
 import "./style.css";
 import AddEventForm from "./AddEventForm";
+import { Link } from "react-router-dom";
 
 export class EventList extends Component {
   state = {
@@ -18,7 +19,10 @@ export class EventList extends Component {
   };
 
   componentDidMount = () => {
-    this.props.loadEvents();
+    const pageNum = this.props.match.params.page
+      ? parseInt(this.props.match.params.page)
+      : 1;
+    this.props.loadEvents(pageNum);
   };
 
   toggleForm = () => {
@@ -80,10 +84,15 @@ export class EventList extends Component {
   };
 
   render = () => {
+    const nextPage = this.props.match.params.page
+      ? parseInt(this.props.match.params.page) + 1
+      : 2;
     return (
       <div>
         <div>
-          <div>Next page</div>
+          <div>
+            <Link to={`/eventlist/${nextPage}`}>Next page</Link>
+          </div>
           {this.displayForm(AddEventForm)}
         </div>
         <div className="eventList">

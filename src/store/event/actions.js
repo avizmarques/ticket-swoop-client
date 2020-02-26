@@ -11,9 +11,11 @@ const eventsFetched = data => ({
   payload: data
 });
 
-export const loadEvents = () => async dispatch => {
+export const loadEvents = pageNum => async dispatch => {
   try {
-    const res = await axios.get(`${baseUrl}/event`);
+    const res = await axios.get(`${baseUrl}/event`, {
+      params: { page: pageNum }
+    });
     dispatch(eventsFetched(res.data));
   } catch (err) {
     console.error(err);

@@ -21,7 +21,8 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Route exact path="/" component={EventList} />
+      <Route exact path="/eventlist" component={EventList} />
+      <Route path="/eventlist/:page" component={EventList} />
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/signup" component={SignupContainer} />
       <Route path="/events/:id" component={TicketList} />

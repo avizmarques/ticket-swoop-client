@@ -2,3 +2,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+
+.pageNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50px;
+}

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadEventDetail, createTicket } from "../../store/event/actions";
+import { displayItems } from "../../App";
 import TicketItem from "./TicketItem";
 import AddTicketForm from "./AddTicketForm";
-import { displayItems } from "../../App";
-import "./style.css";
 import EventDetail from "./EventDetail";
+import "./style.css";
 
 export class TicketList extends Component {
   state = {

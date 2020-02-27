@@ -8,6 +8,7 @@ import {
 const initialState = {
   allEvents: [],
   countEvents: null,
+  createEventSuccess: false,
   event: null
 };
 
@@ -24,14 +25,13 @@ export default function(state = initialState, action) {
         ...state,
         event: { ...action.payload.event, tickets: action.payload.tickets }
       };
-    case CREATE_EVENT_SUCCESS: {
-      const endDate = Date.parse(action.payload.endDate);
-      const now = new Date();
-
-      return endDate < now
-        ? state
-        : { ...state, allEvents: [...state.allEvents, action.payload] };
-    }
+    case CREATE_EVENT_SUCCESS:
+      return {
+        ...state,
+        allEvents: action.payload.rows,
+        countEvents: action.payload.count,
+        createEventSuccess: true
+      };
     case CREATE_TICKET_SUCCESS:
       return { ...state, event: { ...state.event, tickets: action.payload } };
     default:

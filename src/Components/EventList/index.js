@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 export class EventList extends Component {
   state = {
     showForm: false,
+    createEventFailed: false,
     pageNum: null,
     name: "",
     description: "",
@@ -47,14 +48,21 @@ export class EventList extends Component {
       console.error(err);
     }
 
-    this.setState({
-      showForm: false,
-      name: "",
-      description: "",
-      imageUrl: "",
-      startDate: "",
-      endDate: ""
-    });
+    if (this.props.createEventSuccess) {
+      this.setState({
+        showForm: false,
+        createEventFailed: false,
+        name: "",
+        description: "",
+        imageUrl: "",
+        startDate: "",
+        endDate: ""
+      });
+    } else {
+      this.setState({
+        createEventFailed: true
+      });
+    }
   };
 
   displayForm = Form => {
@@ -92,6 +100,9 @@ export class EventList extends Component {
           countEvents={this.props.countEvents}
         />
         <div>{this.displayForm(AddEventForm)}</div>
+        {this.state.createEventFailed && (
+          <p>Something went wrong, please provide correct information.</p>
+        )}
         <div className="eventList">
           {displayItems(this.props.events, EventCard)}
         </div>
@@ -103,6 +114,7 @@ export class EventList extends Component {
 const mapStateToProps = state => ({
   events: state.events.allEvents,
   countEvents: state.events.countEvents,
+  createEventSuccess: state.events.createEventSuccess,
   user: state.user
 });
 

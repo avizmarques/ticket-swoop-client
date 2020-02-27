@@ -36,6 +36,11 @@ export const loadEventDetail = eventId => async dispatch => {
   }
 };
 
+const eventCreated = data => ({
+  type: CREATE_EVENT_SUCCESS,
+  payload: data
+});
+
 export const createEvent = (data, pageNum) => async (dispatch, getState) => {
   try {
     const token = getState().user.token;
@@ -44,7 +49,7 @@ export const createEvent = (data, pageNum) => async (dispatch, getState) => {
       params: { page: pageNum }
     });
 
-    dispatch(eventsFetched(res.data));
+    dispatch(eventCreated(res.data));
   } catch (err) {
     console.error(err);
   }

@@ -3,7 +3,9 @@ import React from "react";
 export default function Footer() {
   return (
     <div className="footer">
-      <div>🍍</div>
+      <span role="img" aria-label="pineapple emoji">
+        🍍
+      </span>
     </div>
   );
 }

@@ -25,7 +25,6 @@ export class EventList extends Component {
       : 1;
 
     this.setState({ pageNum });
-
     this.props.loadEvents(pageNum);
   };
 

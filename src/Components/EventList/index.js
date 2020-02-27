@@ -6,7 +6,6 @@ import { displayItems } from "../../App";
 import "./style.css";
 import AddEventForm from "./AddEventForm";
 import PageNav from "./PageNav";
-import { Link } from "react-router-dom";
 
 export class EventList extends Component {
   state = {

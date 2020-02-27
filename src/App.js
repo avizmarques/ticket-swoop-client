@@ -6,6 +6,7 @@ import TicketList from "./Components/TicketList";
 import TicketDetail from "./Components/TicketDetail";
 import LoginContainer from "./Components/LoginContainer";
 import SignupContainer from "./Components/SignupContainer";
+import Footer from "./Components/Footer";
 import "./style.css";
 
 export const baseUrl = "http://localhost:4000";
@@ -26,6 +27,7 @@ function App() {
       <Route exact path="/signup" component={SignupContainer} />
       <Route path="/events/:id" component={TicketList} />
       <Route path="/tickets/:id" component={TicketDetail} />
+      <Footer />
     </div>
   );
 }

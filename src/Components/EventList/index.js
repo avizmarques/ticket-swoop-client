@@ -36,10 +36,14 @@ export class EventList extends Component {
   };
 
   onSubmit = async e => {
+    const pageNum = this.props.match.params.page
+      ? parseInt(this.props.match.params.page)
+      : 1;
+
     e.preventDefault();
 
     try {
-      await this.props.createEvent(this.state);
+      await this.props.createEvent(this.state, pageNum);
     } catch (err) {
       console.error(err);
     }

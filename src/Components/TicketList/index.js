@@ -35,7 +35,7 @@ export class TicketList extends Component {
     e.preventDefault();
 
     try {
-      this.props.createTicket(this.state);
+      await this.props.createTicket(this.state);
     } catch (err) {
       console.error(err);
     }

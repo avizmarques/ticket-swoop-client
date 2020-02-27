@@ -51,12 +51,13 @@ class TicketDetail extends Component {
     if (!this.props.ticket) {
       return "Loading...";
     }
-    const { user, risk, price, description } = this.props.ticket;
+    const { user, risk, price, description, event } = this.props.ticket;
 
     return (
       <div className="ticketDetail">
         <div>
           <h1>Ticket from {user.userName}</h1>
+          <p>to: {event.name}</p>
           <h2>Risk : {risk} %</h2>
           {this.state.showForm ? (
             <EditTicketForm

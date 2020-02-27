@@ -77,6 +77,9 @@ class TicketDetail extends Component {
           <h2>€ {price}</h2>
           <h3>Description</h3>
           <p>{description}</p>
+          {this.props.user.id === this.props.ticket.userId && (
+            <button onClick={this.toggleForm}>Edit</button>
+          )}
           {this.displayEditForm(EditTicketForm)}
         </div>
         <CommentContainer ticketId={this.state.ticketId} />

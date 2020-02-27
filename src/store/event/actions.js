@@ -36,25 +36,15 @@ export const loadEventDetail = eventId => async dispatch => {
   }
 };
 
-const eventCreated = data => ({
-  type: CREATE_EVENT_SUCCESS,
-  payload: data
-});
-
-export const createEvent = data => async (dispatch, getState) => {
+export const createEvent = (data, pageNum) => async (dispatch, getState) => {
   try {
     const token = getState().user.token;
     const res = await axios.post(`${baseUrl}/event`, data, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
+      params: { page: pageNum }
     });
 
-    const numOfEventsInPage = getState().events.allEvents.length;
-
-    if (numOfEventsInPage < 9) {
-      return dispatch(eventCreated(res.data));
-    }
-
-    return;
+    dispatch(eventsFetched(res.data));
   } catch (err) {
     console.error(err);
   }

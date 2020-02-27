@@ -47,22 +47,6 @@ class TicketDetail extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
 
-  displayEditForm = Form => {
-    if (this.state.showForm) {
-      return (
-        <Form
-          submitChanges={this.submitChanges}
-          onChange={this.onChange}
-          values={this.state}
-        />
-      );
-    }
-
-    if (this.props.user.id === this.props.ticket.userId) {
-      return <button onClick={this.toggleForm}>Edit</button>;
-    }
-  };
-
   render = () => {
     if (!this.props.ticket) {
       return "Loading...";
@@ -74,10 +58,22 @@ class TicketDetail extends Component {
         <div>
           <h1>Ticket from {user.userName}</h1>
           <h2>Risk : {risk} %</h2>
-          <h2>€ {price}</h2>
-          <h3>Description</h3>
-          <p>{description}</p>
-          {this.displayEditForm(EditTicketForm)}
+          {this.state.showForm ? (
+            <EditTicketForm
+              submitChanges={this.submitChanges}
+              onChange={this.onChange}
+              values={this.state}
+            />
+          ) : (
+            <div>
+              <h2>€ {price}</h2>
+              <h3>Description</h3>
+              <p>{description}</p>
+            </div>
+          )}
+          {this.props.user.id === this.props.ticket.userId && (
+            <button onClick={this.toggleForm}>Edit</button>
+          )}
         </div>
         <CommentContainer ticketId={this.state.ticketId} />
       </div>

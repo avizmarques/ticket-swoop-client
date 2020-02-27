@@ -48,8 +48,6 @@ class TicketDetail extends Component {
   };
 
   displayEditForm = Form => {
-    const { imageUrl, price, description } = this.props.ticket;
-
     if (this.state.showForm) {
       return (
         <Form
@@ -61,28 +59,7 @@ class TicketDetail extends Component {
     }
 
     if (this.props.user.id === this.props.ticket.userId) {
-      return (
-        <div>
-          <h2>€ {price}</h2>
-          {imageUrl && (
-            <img className="ticketImage" src={imageUrl} alt={description} />
-          )}
-          <h3>Description</h3>
-          <p>{description}</p>
-          <button onClick={this.toggleForm}>Edit</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h2>€ {price}</h2>
-          {imageUrl && (
-            <img className="ticketImage" src={imageUrl} alt={description} />
-          )}
-          <h3>Description</h3>
-          <p>{description}</p>
-        </div>
-      );
+      return <button onClick={this.toggleForm}>Edit</button>;
     }
   };
 
@@ -90,13 +67,16 @@ class TicketDetail extends Component {
     if (!this.props.ticket) {
       return "Loading...";
     }
-    const { user, risk } = this.props.ticket;
+    const { user, risk, price, description } = this.props.ticket;
 
     return (
       <div className="ticketDetail">
         <div>
           <h1>Ticket from {user.userName}</h1>
           <h2>Risk : {risk} %</h2>
+          <h2>€ {price}</h2>
+          <h3>Description</h3>
+          <p>{description}</p>
           {this.displayEditForm(EditTicketForm)}
         </div>
         <CommentContainer ticketId={this.state.ticketId} />

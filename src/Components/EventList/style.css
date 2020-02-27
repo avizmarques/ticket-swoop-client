@@ -28,12 +28,12 @@
 
 .eventCard {
   background-color: lightgray;
-  width: 300px;
+  width: 20vw;
   text-align: center;
 }
 
 .eventImg {
-  width: 300px;
+  width: 20vw;
 }
 
 .eventDescription {

@@ -19,14 +19,16 @@ export const displayItems = (items, Component) => {
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar />
-      <Route exact path="/" component={EventList} />
-      <Route path="/eventlist/:page" component={EventList} />
-      <Route exact path="/login" component={LoginContainer} />
-      <Route exact path="/signup" component={SignupContainer} />
-      <Route path="/events/:id" component={TicketList} />
-      <Route path="/tickets/:id" component={TicketDetail} />
+      <div className="App">
+        <Route exact path="/" component={EventList} />
+        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/signup" component={SignupContainer} />
+        <Route path="/eventlist/:page" component={EventList} />
+        <Route path="/events/:id" component={TicketList} />
+        <Route path="/tickets/:id" component={TicketDetail} />
+      </div>
       <Footer />
     </div>
   );

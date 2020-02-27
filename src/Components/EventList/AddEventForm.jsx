@@ -9,6 +9,7 @@ export default function AddEventForm(props) {
         placeholder="name"
         value={name}
         onChange={e => props.onChange(e)}
+        required
       />
       <input
         name="description"
@@ -16,12 +17,14 @@ export default function AddEventForm(props) {
         placeholder="description"
         value={description}
         onChange={e => props.onChange(e)}
+        required
       />
       <input
         name="imageUrl"
         placeholder="image URL"
         value={imageUrl}
         onChange={e => props.onChange(e)}
+        required
       />
       Start Date
       <input
@@ -29,6 +32,7 @@ export default function AddEventForm(props) {
         type="date"
         value={startDate}
         onChange={e => props.onChange(e)}
+        required
       />
       End Date
       <input
@@ -36,6 +40,7 @@ export default function AddEventForm(props) {
         type="date"
         value={endDate}
         onChange={e => props.onChange(e)}
+        required
       />
       <button type="submit">Submit</button>
     </form>

@@ -76,7 +76,10 @@ class TicketDetail extends Component {
       return (
         <div>
           <h2>€ {price}</h2>
-          <img src={imageUrl} alt={description} />
+          {imageUrl && (
+            <img className="ticketImage" src={imageUrl} alt={description} />
+          )}
+          <h3>Description</h3>
           <p>{description}</p>
           <button onClick={this.toggleForm}>Edit</button>
         </div>
@@ -85,7 +88,10 @@ class TicketDetail extends Component {
       return (
         <div>
           <h2>€ {price}</h2>
-          <img src={imageUrl} alt={description} />
+          {imageUrl && (
+            <img className="ticketImage" src={imageUrl} alt={description} />
+          )}
+          <h3>Description</h3>
           <p>{description}</p>
         </div>
       );

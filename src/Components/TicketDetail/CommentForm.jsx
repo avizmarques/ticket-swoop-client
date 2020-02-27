@@ -8,6 +8,7 @@ export default function CommentForm(props) {
         placeholder="comment"
         value={props.text}
         onChange={e => props.onChange(e)}
+        required
       />
       <button type="submit">Add</button>
     </form>

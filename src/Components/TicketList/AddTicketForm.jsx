@@ -9,6 +9,7 @@ export default function AddEventForm(props) {
         placeholder="price"
         value={price}
         onChange={e => props.onChange(e)}
+        required
       />
       <input
         name="description"
@@ -16,6 +17,7 @@ export default function AddEventForm(props) {
         placeholder="description"
         value={description}
         onChange={e => props.onChange(e)}
+        required
       />
       <input
         name="imageUrl"

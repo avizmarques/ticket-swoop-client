@@ -7,3 +7,12 @@
 .commentCard {
   margin-top: 20px;
 }
+
+.ticketImage {
+  width: 600px;
+}
+
+.commentContainer {
+  display: flex;
+  flex-direction: column-reverse;
+}

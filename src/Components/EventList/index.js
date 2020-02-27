@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 export class EventList extends Component {
   state = {
     showForm: false,
+    pageNum: null,
     name: "",
     description: "",
     imageUrl: "",
@@ -22,6 +23,9 @@ export class EventList extends Component {
     const pageNum = this.props.match.params.page
       ? parseInt(this.props.match.params.page)
       : 1;
+
+    this.setState({ pageNum });
+
     this.props.loadEvents(pageNum);
   };
 
@@ -36,14 +40,10 @@ export class EventList extends Component {
   };
 
   onSubmit = async e => {
-    const pageNum = this.props.match.params.page
-      ? parseInt(this.props.match.params.page)
-      : 1;
-
     e.preventDefault();
 
     try {
-      await this.props.createEvent(this.state, pageNum);
+      await this.props.createEvent(this.state, this.state.pageNum);
     } catch (err) {
       console.error(err);
     }
@@ -86,17 +86,13 @@ export class EventList extends Component {
       return "Loading...";
     }
 
-    const currentPage = this.props.params
-      ? parseInt(this.props.params.page)
-      : 1;
-
     return (
       <div>
         <PageNav
-          currentPage={currentPage}
+          currentPage={this.state.pageNum}
           countEvents={this.props.countEvents}
         />
-        <div>{this.displayForm(AddEventForm, "event")}</div>
+        <div>{this.displayForm(AddEventForm)}</div>
         <div className="eventList">
           {displayItems(this.props.events, EventCard)}
         </div>

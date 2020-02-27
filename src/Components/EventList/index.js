@@ -5,12 +5,14 @@ import EventCard from "./EventCard";
 import { displayItems } from "../../App";
 import "./style.css";
 import AddEventForm from "./AddEventForm";
+import PageNav from "./PageNav";
 import { Link } from "react-router-dom";
 
 export class EventList extends Component {
   state = {
     showForm: false,
-    eventCreationFailed: false,
+    createEventFailed: false,
+    pageNum: null,
     name: "",
     description: "",
     imageUrl: "",
@@ -22,6 +24,8 @@ export class EventList extends Component {
     const pageNum = this.props.match.params.page
       ? parseInt(this.props.match.params.page)
       : 1;
+
+    this.setState({ pageNum });
     this.props.loadEvents(pageNum);
   };
 
@@ -36,55 +40,28 @@ export class EventList extends Component {
   };
 
   onSubmit = async e => {
-    const pageNum = this.props.match.params.page
-      ? parseInt(this.props.match.params.page)
-      : 1;
-
     e.preventDefault();
 
     try {
-      await this.props.createEvent(this.state, pageNum);
+      await this.props.createEvent(this.state, this.state.pageNum);
     } catch (err) {
       console.error(err);
     }
 
-    this.setState({
-      showForm: false,
-      name: "",
-      description: "",
-      imageUrl: "",
-      startDate: "",
-      endDate: ""
-    });
-  };
-
-  displayForm = Form => {
-    if (this.props.user.token) {
-      return (
-        <div className="hiddenForm">
-          <button onClick={this.toggleForm}>Add event</button>
-          {this.state.showForm && this.state.eventCreationFailed && (
-            <p>
-              Something went wrong. Make sure you're logged in and that the
-              event you're trying to create doesn't already exist and isn't in
-              the past.
-            </p>
-          )}
-          {this.state.showForm && (
-            <Form
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              values={this.state}
-            />
-          )}
-        </div>
-      );
+    if (this.props.createEventSuccess) {
+      this.setState({
+        showForm: false,
+        createEventFailed: false,
+        name: "",
+        description: "",
+        imageUrl: "",
+        startDate: "",
+        endDate: ""
+      });
     } else {
-      return (
-        <div className="hiddenForm">
-          <Link to="/login">Login</Link> to post a new event
-        </div>
-      );
+      this.setState({
+        createEventFailed: true
+      });
     }
   };
 
@@ -93,30 +70,22 @@ export class EventList extends Component {
       return "Loading...";
     }
 
-    const currentPage = parseInt(this.props.match.params.page);
-
-    const nextPage = currentPage ? currentPage + 1 : 2;
-
-    const previousPage = currentPage
-      ? currentPage === 2
-        ? null
-        : currentPage - 1
-      : null;
-
-    const lastPage = currentPage === Math.ceil(this.props.countEvents / 9);
-
     return (
       <div>
-        <div>
-          <div className="pageNav">
-            {!lastPage && <Link to={`/eventlist/${nextPage}`}>Next page</Link>}
-            {previousPage && (
-              <Link to={`/eventlist/${previousPage}`}>Previous page</Link>
-            )}
-            {currentPage === 2 && <Link to={`/`}>Previous page</Link>}
-          </div>
-          {this.displayForm(AddEventForm)}
-        </div>
+        <PageNav
+          currentPage={this.state.pageNum}
+          countEvents={this.props.countEvents}
+        />
+        <AddEventForm
+          token={this.props.user.token}
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.state}
+          toggleForm={this.toggleForm}
+        />
+        {this.state.createEventFailed && (
+          <p>Something went wrong, please provide correct information.</p>
+        )}
         <div className="eventList">
           {displayItems(this.props.events, EventCard)}
         </div>
@@ -128,6 +97,7 @@ export class EventList extends Component {
 const mapStateToProps = state => ({
   events: state.events.allEvents,
   countEvents: state.events.countEvents,
+  createEventSuccess: state.events.createEventSuccess,
   user: state.user
 });
 

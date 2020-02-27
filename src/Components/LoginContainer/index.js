@@ -35,9 +35,12 @@ class LoginContainer extends Component {
   render() {
     const { userCreated, token } = this.props.user;
     return (
-      <div>
+      <div className="loginForm">
+        {this.state.loginFailed && (
+          <p>Something went wrong, please provide valid credentials.</p>
+        )}
         {userCreated && !token && <p>Signup successful, please login.</p>}
-        {this.props.user.token ? (
+        {token ? (
           <p>You are already logged in</p>
         ) : (
           <LoginForm

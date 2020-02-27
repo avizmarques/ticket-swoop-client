@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadTicket, editTicket } from "../../store/ticket/actions";
-import CommentContainer from "./CommentContainer";
-import CommentForm from "./CommentForm";
 import EditTicketForm from "./EditTicketForm";
-import { postComment } from "../../store/ticket/actions";
+import CommentContainer from "./CommentContainer/index";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 class TicketDetail extends Component {
   state = {
     ticketId: parseInt(this.props.match.params.id),
     showForm: false,
-    text: "",
     price: "",
     description: "",
     imageUrl: ""
@@ -29,14 +25,6 @@ class TicketDetail extends Component {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.postComment(this.state.ticketId, this.state.text);
-    this.setState({
-      text: ""
-    });
   };
 
   onChange = e => {
@@ -60,8 +48,6 @@ class TicketDetail extends Component {
   };
 
   displayEditForm = Form => {
-    const { imageUrl, price, description } = this.props.ticket;
-
     if (this.state.showForm) {
       return (
         <Form
@@ -73,28 +59,7 @@ class TicketDetail extends Component {
     }
 
     if (this.props.user.id === this.props.ticket.userId) {
-      return (
-        <div>
-          <h2>€ {price}</h2>
-          {imageUrl && (
-            <img className="ticketImage" src={imageUrl} alt={description} />
-          )}
-          <h3>Description</h3>
-          <p>{description}</p>
-          <button onClick={this.toggleForm}>Edit</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h2>€ {price}</h2>
-          {imageUrl && (
-            <img className="ticketImage" src={imageUrl} alt={description} />
-          )}
-          <h3>Description</h3>
-          <p>{description}</p>
-        </div>
-      );
+      return <button onClick={this.toggleForm}>Edit</button>;
     }
   };
 
@@ -102,34 +67,19 @@ class TicketDetail extends Component {
     if (!this.props.ticket) {
       return "Loading...";
     }
-    const { user, risk } = this.props.ticket;
-    const color =
-      risk <= 10 ? "#22ff00" : risk > 10 && risk <= 50 ? "#ffbb00" : "#ff0000";
+    const { user, risk, price, description } = this.props.ticket;
+
     return (
       <div className="ticketDetail">
         <div>
           <h1>Ticket from {user.userName}</h1>
           <h2>Risk : {risk} %</h2>
+          <h2>€ {price}</h2>
+          <h3>Description</h3>
+          <p>{description}</p>
           {this.displayEditForm(EditTicketForm)}
         </div>
-        <div>
-          <h2>Comments</h2>
-          {this.props.user.token ? (
-            <CommentForm
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              text={this.state.text}
-            />
-          ) : (
-            <div>
-              <Link to="/login">Login</Link> to post a new comment
-            </div>
-          )}
-          <CommentContainer
-            ticketId={this.state.ticketId}
-            comments={this.props.ticket.comments}
-          />
-        </div>
+        <CommentContainer ticketId={this.state.ticketId} />
       </div>
     );
   };
@@ -137,6 +87,6 @@ class TicketDetail extends Component {
 
 const mapStateToProps = state => ({ ticket: state.ticket, user: state.user });
 
-const mapDispatchToProps = { loadTicket, postComment, editTicket };
+const mapDispatchToProps = { loadTicket, editTicket };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketDetail);

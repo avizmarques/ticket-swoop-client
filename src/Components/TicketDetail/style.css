@@ -12,7 +12,11 @@
   width: 600px;
 }
 
-.commentContainer {
+.commentList {
   display: flex;
   flex-direction: column-reverse;
+}
+
+.commentTime {
+  color: grey;
 }

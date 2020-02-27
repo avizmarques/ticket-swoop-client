@@ -65,29 +65,6 @@ export class EventList extends Component {
     }
   };
 
-  displayForm = Form => {
-    if (this.props.user.token) {
-      return (
-        <div className="hiddenForm">
-          <button onClick={this.toggleForm}>Add event</button>
-          {this.state.showForm && (
-            <Form
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              values={this.state}
-            />
-          )}
-        </div>
-      );
-    } else {
-      return (
-        <div className="hiddenForm">
-          <Link to="/login">Login</Link> to post a new event
-        </div>
-      );
-    }
-  };
-
   render = () => {
     if (!this.props.events.length) {
       return "Loading...";
@@ -99,7 +76,13 @@ export class EventList extends Component {
           currentPage={this.state.pageNum}
           countEvents={this.props.countEvents}
         />
-        <div>{this.displayForm(AddEventForm)}</div>
+        <AddEventForm
+          token={this.props.user.token}
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.state}
+          toggleForm={this.toggleForm}
+        />
         {this.state.createEventFailed && (
           <p>Something went wrong, please provide correct information.</p>
         )}

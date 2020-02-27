@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function AddEventForm(props) {
+export default function AddTicketForm(props) {
   if (!props.token) {
     return (
       <div>
@@ -10,34 +10,36 @@ export default function AddEventForm(props) {
     );
   }
 
-  const { price, imageUrl, description } = props.values;
+  const { price, imageUrl, description, showForm } = props.values;
   return (
     <div>
       <button onClick={props.toggleForm}>Add ticket</button>
-      <form onSubmit={props.onSubmit}>
-        <input
-          name="price"
-          placeholder="price"
-          value={price}
-          onChange={e => props.onChange(e)}
-          required
-        />
-        <input
-          name="description"
-          type="text"
-          placeholder="description"
-          value={description}
-          onChange={e => props.onChange(e)}
-          required
-        />
-        <input
-          name="imageUrl"
-          placeholder="image URL"
-          value={imageUrl}
-          onChange={e => props.onChange(e)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      {showForm && (
+        <form onSubmit={props.onSubmit}>
+          <input
+            name="price"
+            placeholder="price"
+            value={price}
+            onChange={e => props.onChange(e)}
+            required
+          />
+          <input
+            name="description"
+            type="text"
+            placeholder="description"
+            value={description}
+            onChange={e => props.onChange(e)}
+            required
+          />
+          <input
+            name="imageUrl"
+            placeholder="image URL"
+            value={imageUrl}
+            onChange={e => props.onChange(e)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </div>
   );
 }

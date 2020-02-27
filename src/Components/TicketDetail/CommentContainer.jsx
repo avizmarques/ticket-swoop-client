@@ -4,7 +4,7 @@ import CommentCard from "./CommentCard";
 
 export default function CommentContainer(props) {
   return (
-    <div>
+    <div className="commentContainer">
       {props.comments.length
         ? displayItems(props.comments, CommentCard)
         : "No comments for this ticket."}

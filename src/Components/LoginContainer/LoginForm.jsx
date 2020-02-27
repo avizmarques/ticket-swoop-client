@@ -11,6 +11,7 @@ export default function LoginForm(props) {
           placeholder="username"
           value={props.values.userName}
           onChange={e => props.onChange(e)}
+          required
         />
         <input
           type="password"
@@ -18,6 +19,7 @@ export default function LoginForm(props) {
           placeholder="password"
           value={props.values.password}
           onChange={e => props.onChange(e)}
+          required
         />
         <button type="submit">Login</button>
       </form>

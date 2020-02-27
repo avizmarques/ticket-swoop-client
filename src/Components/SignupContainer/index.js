@@ -33,7 +33,7 @@ class SignupContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="signup">
         <SignupForm
           onSubmit={this.onSubmit}
           onChange={this.onChange}

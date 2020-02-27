@@ -11,6 +11,7 @@ export default function SignupForm(props) {
           placeholder="username"
           value={props.values.userName}
           onChange={e => props.onChange(e)}
+          required
         />
         <input
           type="email"
@@ -18,6 +19,7 @@ export default function SignupForm(props) {
           placeholder="email"
           value={props.values.email}
           onChange={e => props.onChange(e)}
+          required
         />
         <input
           type="password"
@@ -25,6 +27,7 @@ export default function SignupForm(props) {
           placeholder="password"
           value={props.values.password}
           onChange={e => props.onChange(e)}
+          required
         />
         <button type="submit">Signup</button>
       </form>

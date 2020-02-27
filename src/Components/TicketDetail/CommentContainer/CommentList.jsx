@@ -1,10 +1,10 @@
 import React from "react";
-import { displayItems } from "../../App";
+import { displayItems } from "../../../App";
 import CommentCard from "./CommentCard";
 
-export default function CommentContainer(props) {
+export default function CommentList(props) {
   return (
-    <div className="commentContainer">
+    <div className="commentList">
       {props.comments.length
         ? displayItems(props.comments, CommentCard)
         : "No comments for this ticket."}

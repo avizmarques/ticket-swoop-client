@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadTicket, editTicket } from "../../store/ticket/actions";
-import CommentContainer from "./CommentContainer";
-import CommentForm from "./CommentForm";
 import EditTicketForm from "./EditTicketForm";
-import { postComment } from "../../store/ticket/actions";
+import CommentContainer from "./CommentContainer/index";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 class TicketDetail extends Component {
   state = {
     ticketId: parseInt(this.props.match.params.id),
     showForm: false,
-    text: "",
     price: "",
     description: "",
     imageUrl: ""
@@ -29,14 +25,6 @@ class TicketDetail extends Component {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.postComment(this.state.ticketId, this.state.text);
-    this.setState({
-      text: ""
-    });
   };
 
   onChange = e => {
@@ -111,24 +99,7 @@ class TicketDetail extends Component {
           <h2>Risk : {risk} %</h2>
           {this.displayEditForm(EditTicketForm)}
         </div>
-        <div>
-          <h2>Comments</h2>
-          {this.props.user.token ? (
-            <CommentForm
-              onSubmit={this.onSubmit}
-              onChange={this.onChange}
-              text={this.state.text}
-            />
-          ) : (
-            <div>
-              <Link to="/login">Login</Link> to post a new comment
-            </div>
-          )}
-          <CommentContainer
-            ticketId={this.state.ticketId}
-            comments={this.props.ticket.comments}
-          />
-        </div>
+        <CommentContainer ticketId={this.state.ticketId} />
       </div>
     );
   };
@@ -136,6 +107,6 @@ class TicketDetail extends Component {
 
 const mapStateToProps = state => ({ ticket: state.ticket, user: state.user });
 
-const mapDispatchToProps = { loadTicket, postComment, editTicket };
+const mapDispatchToProps = { loadTicket, editTicket };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketDetail);

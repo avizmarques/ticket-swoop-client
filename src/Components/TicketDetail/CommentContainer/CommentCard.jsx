@@ -5,8 +5,8 @@ export default function CommentCard(props) {
   return (
     <div className="commentCard">
       <div>{text}</div>
-      <div>by {user.userName}</div>
-      <div>on {createdAt.slice(0, 10)}</div>
+      <h3>by {user.userName}</h3>
+      <div className="commentTime">on {createdAt.slice(0, 10)}</div>
     </div>
   );
 }

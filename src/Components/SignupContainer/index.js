@@ -13,6 +13,7 @@ class SignupContainer extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
+
     try {
       await this.props.signup(this.state);
       if (this.props.user.userCreated) {

@@ -103,8 +103,7 @@ class TicketDetail extends Component {
       return "Loading...";
     }
     const { user, risk } = this.props.ticket;
-    const color =
-      risk <= 10 ? "#22ff00" : risk > 10 && risk <= 50 ? "#ffbb00" : "#ff0000";
+
     return (
       <div className="ticketDetail">
         <div>

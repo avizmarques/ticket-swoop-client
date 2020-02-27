@@ -91,7 +91,7 @@ export class TicketList extends Component {
         <p>
           {startDate.slice(0, 10)} to {endDate.slice(0, 10)}
         </p>
-        <img className="imageDetail" src={imageUrl} />
+        <img className="imageDetail" src={imageUrl} alt={description} />
         <p>{description}</p>
         {this.displayForm(AddTicketForm)}
         <div className="ticketList">

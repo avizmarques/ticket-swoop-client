@@ -5,12 +5,12 @@ import EventCard from "./EventCard";
 import { displayItems } from "../../App";
 import "./style.css";
 import AddEventForm from "./AddEventForm";
+import PageNav from "./PageNav";
 import { Link } from "react-router-dom";
 
 export class EventList extends Component {
   state = {
     showForm: false,
-    eventCreationFailed: false,
     name: "",
     description: "",
     imageUrl: "",
@@ -63,13 +63,6 @@ export class EventList extends Component {
       return (
         <div className="hiddenForm">
           <button onClick={this.toggleForm}>Add event</button>
-          {this.state.showForm && this.state.eventCreationFailed && (
-            <p>
-              Something went wrong. Make sure you're logged in and that the
-              event you're trying to create doesn't already exist and isn't in
-              the past.
-            </p>
-          )}
           {this.state.showForm && (
             <Form
               onSubmit={this.onSubmit}
@@ -93,30 +86,17 @@ export class EventList extends Component {
       return "Loading...";
     }
 
-    const currentPage = parseInt(this.props.match.params.page);
-
-    const nextPage = currentPage ? currentPage + 1 : 2;
-
-    const previousPage = currentPage
-      ? currentPage === 2
-        ? null
-        : currentPage - 1
-      : null;
-
-    const lastPage = currentPage === Math.ceil(this.props.countEvents / 9);
+    const currentPage = this.props.params
+      ? parseInt(this.props.params.page)
+      : 1;
 
     return (
       <div>
-        <div>
-          <div className="pageNav">
-            {!lastPage && <Link to={`/eventlist/${nextPage}`}>Next page</Link>}
-            {previousPage && (
-              <Link to={`/eventlist/${previousPage}`}>Previous page</Link>
-            )}
-            {currentPage === 2 && <Link to={`/`}>Previous page</Link>}
-          </div>
-          {this.displayForm(AddEventForm)}
-        </div>
+        <PageNav
+          currentPage={currentPage}
+          countEvents={this.props.countEvents}
+        />
+        <div>{this.displayForm(AddEventForm, "event")}</div>
         <div className="eventList">
           {displayItems(this.props.events, EventCard)}
         </div>

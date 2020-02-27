@@ -9,7 +9,6 @@ import SignupContainer from "./Components/SignupContainer";
 import "./style.css";
 
 export const baseUrl = "http://localhost:4000";
-// export const baseUrl = INSERT HEROKU URL
 
 export const displayItems = (items, Component) => {
   return !items

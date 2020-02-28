@@ -10,14 +10,26 @@ const loginSuccess = token => ({
 });
 
 export const login = data => async dispatch => {
-  const { userName, email, password } = data;
+  const { userName, password } = data;
   try {
     const res = await axios.post(`${baseUrl}/login`, {
       userName,
-      email,
       password
     });
     dispatch(loginSuccess(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const signupSuccess = () => ({
+  type: SIGNUP_SUCCESS
+});
+
+export const signup = data => async dispatch => {
+  try {
+    const res = await axios.post(`${baseUrl}/signup`, data);
+    dispatch(signupSuccess(res.data));
   } catch (err) {
     console.error(err);
   }

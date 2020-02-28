@@ -1,0 +1,22 @@
+.ticketDetail {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.commentCard {
+  margin-top: 20px;
+}
+
+.ticketImage {
+  width: 600px;
+}
+
+.commentList {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.commentTime {
+  color: grey;
+}

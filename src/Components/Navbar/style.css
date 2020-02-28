@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: blue;
+  height: 70px;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+
+.whiteButton {
+  background-color: white;
+  color: blue;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 28px;
+  border: none;
+  padding: 10px 20px;
+}
+
+.logo {
+  color: white;
+  font-size: 1.5em;
+}
+
+.footer {
+  height: 100px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

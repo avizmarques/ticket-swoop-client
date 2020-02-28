@@ -1,0 +1,48 @@
+.pageNav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: turquoise;
+  color: white;
+  padding: 0px 50px;
+}
+
+.pageNav > a {
+  color: blue;
+  text-emphasis: none;
+}
+
+.eventList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 30px;
+  column-gap: 30px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.eventCard {
+  background-color: lightgray;
+  width: 20vw;
+  text-align: center;
+}
+
+.eventImg {
+  width: 20vw;
+}
+
+.eventDescription {
+  align-content: center;
+  padding: 10px 0px;
+}
+
+.hiddenForm {
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+}

@@ -6,3 +6,6 @@ This project was created as part of my final assignment of the [Codaisseur Full-
 * Redux
 * Express (REST API)
 * Sequelize
+* jsonwebtoken
+* bcrypt
+* postgres
